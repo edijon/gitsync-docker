@@ -10,8 +10,8 @@ help:
 	@echo "build"
 	@echo "build-no-caching"
 	@echo "run"
-	@echo "up : build and run docker instance"
 	@echo "stop : stop and remove docker instance"
+	@echo "test : build run stop"
 	@echo "version"
 
 
@@ -27,14 +27,14 @@ build-no-caching:
 
 
 run:
-	docker run -it --rm --name="$(APP_NAME)" $(APP_NAME):$(VERSION)
-
-
-up: build run 
+	docker run -i --rm --name="$(APP_NAME)" $(APP_NAME):$(VERSION) --help
 
 
 stop: 
 	docker stop $(APP_NAME); docker rm $(APP_NAME)
+
+
+test: build run
 
 
 version:
