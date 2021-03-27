@@ -19,7 +19,21 @@
 
 ## gitsync docker CLI (optional)
 
+> You should use this docker image with an user (uid:gid) available on your system
+ 
 * Once gitsync docker image is set up, get help :
     ```bash
-    docker run -it --rm gitsync:latest
+    docker run \
+        -it --rm \
+        --user=$(id -u):$(id -g) \
+        gitsync:latest --help
     ```
+* You could bind mount a volume from the host to synchronize your repositories :
+    ```bash
+    docker run \
+        -it --rm \
+        --user=$(id -u):$(id -g) \
+        -v /my/host/folder:/usr/src/gitsync \
+        gitsync:latest --help
+    ```
+
